@@ -40,6 +40,19 @@ export function authenticateUser(email, password) {
   return sanitizeUser(user);
 }
 
+export function updateUser(userId, updates) {
+  const user = findUserById(userId);
+  if (!user) return null;
+
+  if (updates.firstName) user.firstName = updates.firstName;
+  if (updates.lastName) user.lastName = updates.lastName;
+  if (updates.address) {
+    user.addresses = [...user.addresses, updates.address];
+  }
+
+  return sanitizeUser(user);
+}
+
 export function createToken(user) {
   return jwt.sign({ id: user.id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
 }

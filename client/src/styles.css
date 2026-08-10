@@ -18,7 +18,7 @@ a { text-decoration: none; color: #464feb; }
 .chips span { padding: 8px 12px; border-radius: 999px; background: #e0e7ff; color: #3730a3; }
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
-.checkout-form { display: grid; gap: 12px; margin-top: 16px; max-width: 420px; }
+..checkout-form { display: grid; gap: 12px; margin: 16px auto 0; max-width: 420px; width: 100%; }
 .checkout-form input { padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; }
 button { border: none; padding: 11px 14px; border-radius: 10px; background: #464feb; color: white; cursor: pointer; }
 .message { color: #0f766e; }

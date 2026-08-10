@@ -1,8 +1,8 @@
 import { orders } from '../data/orders.js';
-import { getCart } from './cartService.js';
+import { getCart, clearCart } from './cartService.js';
 
 export function createOrder({ customer, shippingAddress, paymentMethod }, userId) {
-  const cart = getCart();
+  const cart = getCart(userId);
   if (!cart.items.length) {
     return null;
   }
@@ -25,6 +25,7 @@ export function createOrder({ customer, shippingAddress, paymentMethod }, userId
   };
 
   orders.push(order);
+  clearCart(userId);
   return order;
 }
 

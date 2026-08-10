@@ -1,4 +1,4 @@
-import { authenticateUser, createToken, findUserById, registerUser } from '../services/authService.js';
+import { authenticateUser, createToken, findUserById, registerUser, updateUser } from '../services/authService.js';
 
 export function handleRegister(req, res) {
   const user = registerUser(req.body);
@@ -25,4 +25,12 @@ export function handleCurrentUser(req, res) {
   }
   const { passwordHash, ...safeUser } = user;
   return res.json(safeUser);
+}
+
+export function handleUpdateCurrentUser(req, res) {
+  const user = updateUser(req.user.id, req.body);
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  return res.json({ ok: true, user });
 }
