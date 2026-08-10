@@ -1,17 +1,23 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getCurrentUser, login as apiLogin, register as apiRegister } from '../api/api.js';
+import {
+  getCurrentUser,
+  login as apiLogin,
+  logout as apiLogout,
+  register as apiRegister,
+  updateCurrentUser as apiUpdateCurrentUser
+} from '../api/api.js';
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
-    const stored = window.localStorage.getItem('eshop-user');
+    const stored = window.localStorage.getItem('eshop-user') || window.sessionStorage.getItem('eshop-user');
     return stored ? JSON.parse(stored) : null;
   });
   const [loading, setLoading] = useState(!user);
 
   useEffect(() => {
-    const token = window.localStorage.getItem('eshop-token');
+    const token = window.localStorage.getItem('eshop-token') || window.sessionStorage.getItem('eshop-token');
     if (!token) {
       setUser(null);
       setLoading(false);
@@ -22,7 +28,8 @@ export function AuthProvider({ children }) {
       .then((data) => {
         if (data?.id) {
           setUser(data);
-          window.localStorage.setItem('eshop-user', JSON.stringify(data));
+          const storage = window.localStorage.getItem('eshop-token') ? window.localStorage : window.sessionStorage;
+          storage.setItem('eshop-user', JSON.stringify(data));
         } else {
           logout();
         }
@@ -36,8 +43,6 @@ export function AuthProvider({ children }) {
     if (!data.ok) {
       throw new Error(data.message || 'Login failed');
     }
-    window.localStorage.setItem('eshop-token', data.token);
-    window.localStorage.setItem('eshop-user', JSON.stringify(data.user));
     setUser(data.user);
     return data;
   };
@@ -47,20 +52,26 @@ export function AuthProvider({ children }) {
     if (!data.ok) {
       throw new Error(data.message || 'Registration failed');
     }
-    window.localStorage.setItem('eshop-token', data.token);
-    window.localStorage.setItem('eshop-user', JSON.stringify(data.user));
     setUser(data.user);
     return data;
   };
 
-  const logout = () => {
-    window.localStorage.removeItem('eshop-token');
-    window.localStorage.removeItem('eshop-user');
+  const logout = async () => {
+    await apiLogout();
     setUser(null);
   };
 
+  const updateProfile = async (payload) => {
+    const data = await apiUpdateCurrentUser(payload);
+    if (!data.ok) {
+      throw new Error(data.message || 'Update failed');
+    }
+    setUser(data.user);
+    return data;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, isAuthenticated: Boolean(user) }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, updateProfile, isAuthenticated: Boolean(user) }}>
       {children}
     </AuthContext.Provider>
   );
