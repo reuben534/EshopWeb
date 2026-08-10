@@ -1,5 +1,4 @@
 import { orders } from '../data/orders.js';
-import { getProductById } from './productService.js';
 import { getCart } from './cartService.js';
 
 export function createOrder({ customer, shippingAddress, paymentMethod }, userId) {

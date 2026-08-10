@@ -1,8 +1,9 @@
 import express from 'express';
-import { processCheckout } from '../controllers/checkoutController.js';
+import { placeOrder } from '../controllers/orderController.js';
+import { requireAuth } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/', processCheckout);
+router.post('/', requireAuth, placeOrder);
 
 export default router;
