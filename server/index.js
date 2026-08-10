@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import productRoutes from './routes/productRoutes.js';
+import { fetchCategories } from './controllers/productController.js';
 import adminRoutes from './routes/adminRoutes.js';
 import checkoutRoutes from './routes/checkoutRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
@@ -30,7 +31,9 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/auth', tokenRoutes);
-app.use('/api', productRoutes);
+app.use('/api/products', productRoutes);
+// expose categories at /api/categories for the client
+app.get('/api/categories', fetchCategories);
 app.use('/api/admin', adminRoutes);
 app.use('/api/checkout', checkoutRoutes);
 app.use('/api/cart', cartRoutes);
