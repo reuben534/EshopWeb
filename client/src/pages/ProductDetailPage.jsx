@@ -35,17 +35,17 @@ export default function ProductDetailPage() {
               value={quantity}
               onChange={(event) => setQuantity(Number(event.target.value))}
             />
-            <button type="button" onClick={() => addItem({
+            <button type="button" className="btn primary-btn cart-btn" onClick={() => addItem({
               productId: product.id,
               name: product.name,
               price: product.price,
               quantity,
               category: product.category
             })}>
-              Add to Cart
+              <span>🛒</span> Add to Cart
             </button>
-            <button type="button" onClick={() => addWishlistItem(product)}>
-              Add to Wishlist
+            <button type="button" className="btn secondary-btn wishlist-btn" onClick={() => addWishlistItem(product)}>
+              <span>🤍</span> Wishlist
             </button>
           </div>
         </div>

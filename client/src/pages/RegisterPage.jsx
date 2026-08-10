@@ -27,7 +27,7 @@ export default function RegisterPage() {
           <input value={form.lastName} placeholder="Last Name" onChange={(event) => setForm({ ...form, lastName: event.target.value })} required />
           <input value={form.email} placeholder="Email" onChange={(event) => setForm({ ...form, email: event.target.value })} required />
           <input type="password" value={form.password} placeholder="Password" onChange={(event) => setForm({ ...form, password: event.target.value })} required />
-          <button type="submit">Register</button>
+          <button type="submit" className="btn primary-btn">🧑‍💻 Register</button>
           {error && <p className="message">{error}</p>}
         </form>
       </div>

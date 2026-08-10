@@ -61,7 +61,7 @@ export default function CheckoutPage() {
               <option>Bank Transfer</option>
             </select>
           </label>
-          <button type="submit">Place Order</button>
+          <button type="submit" className="btn primary-btn">💳 Place Order</button>
         </form>
         {message && <p className="message">{message}</p>}
       </div>

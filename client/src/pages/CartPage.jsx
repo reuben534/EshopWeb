@@ -27,7 +27,7 @@ export default function CartPage() {
               value={item.quantity}
               onChange={(event) => updateItem(item.productId, Number(event.target.value))}
             />
-            <button type="button" onClick={() => removeItem(item.productId)}>Remove</button>
+            <button type="button" className="btn secondary-btn remove-btn" onClick={() => removeItem(item.productId)}>🗑 Remove</button>
           </div>
         ))}
       </div>

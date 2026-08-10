@@ -26,7 +26,7 @@ export default function WishlistPage() {
               <p>{product.description}</p>
               <strong>{formatZAR(product.price)}</strong>
             </Link>
-            <button type="button" onClick={() => removeItem(product)}>Remove</button>
+            <button type="button" className="btn secondary-btn remove-btn" onClick={() => removeItem(product)}>🗑 Remove</button>
           </article>
         ))}
       </div>

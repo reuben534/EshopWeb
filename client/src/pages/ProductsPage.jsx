@@ -40,8 +40,8 @@ export default function ProductsPage() {
           <p>Browse all electronics by category or sort by price and rating.</p>
         </div>
         <div className="view-toggle">
-          <button type="button" onClick={() => setListView(false)}>Grid</button>
-          <button type="button" onClick={() => setListView(true)}>List</button>
+          <button type="button" className="btn toggle-btn" onClick={() => setListView(false)}>📦 Grid</button>
+          <button type="button" className="btn toggle-btn" onClick={() => setListView(true)}>📋 List</button>
         </div>
       </div>
 

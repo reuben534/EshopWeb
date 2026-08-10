@@ -11,24 +11,24 @@ export default function Topbar() {
         <p>Premium electronics marketplace</p>
       </div>
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/products">Products</Link>
-        <Link to="/search">Search</Link>
-        <Link to="/cart">Cart</Link>
-        <Link to="/wishlist">Wishlist</Link>
-        <Link to="/orders">Orders</Link>
-        {user?.role === 'admin' && <Link to="/admin">Admin</Link>}
+        <Link to="/">🏠 Home</Link>
+        <Link to="/products">🛍 Products</Link>
+        <Link to="/search">🔎 Search</Link>
+        <Link to="/cart">🛒 Cart</Link>
+        <Link to="/wishlist">🤍 Wishlist</Link>
+        <Link to="/orders">📦 Orders</Link>
+        {user?.role === 'admin' && <Link to="/admin">⚙️ Admin</Link>}
         {user ? (
           <>
-            <Link to="/profile">{user.firstName}</Link>
+            <Link to="/profile">👤 {user.firstName}</Link>
             <button type="button" className="link-button" onClick={logout}>
-              Logout
+              🚪 Logout
             </button>
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login">🔐 Login</Link>
+            <Link to="/register">📝 Register</Link>
           </>
         )}
       </nav>

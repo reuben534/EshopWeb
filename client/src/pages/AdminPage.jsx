@@ -40,7 +40,7 @@ export default function AdminPage() {
           value={form.email}
           onChange={(event) => setForm({ ...form, email: event.target.value })}
         />
-        <button type="submit">Place order</button>
+        <button type="submit" className="btn primary-btn">⚡ Place order</button>
         {message ? <p className="message">{message}</p> : null}
       </form>
     </section>

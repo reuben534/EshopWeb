@@ -8,8 +8,8 @@ export default function ProductCard({ product }) {
         <img src={product.image} alt={product.name} />
         <h4>{product.name}</h4>
         <p>{product.description}</p>
-        <div className="meta">{product.category}</div>
-        <strong>{formatZAR(product.price)}</strong>
+        <div className="meta">✨ {product.category}</div>
+        <div className="card-price">💰 {formatZAR(product.price)}</div>
       </Link>
     </article>
   );
