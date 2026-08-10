@@ -21,6 +21,7 @@ export default function WishlistPage() {
         {wishlist.items.map((product) => (
           <article className="product-card" key={product.id}>
             <Link to={`/products/${product.id}`}>
+              <img src={product.image} alt={product.name} />
               <h4>{product.name}</h4>
               <p>{product.description}</p>
               <strong>{formatZAR(product.price)}</strong>
